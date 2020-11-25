@@ -25,7 +25,7 @@ def books():
 
 # NEW
 # GET '/books/new'
-# - Showns an html form to create a new task - this SHOWS US THE VIEW! So in our html code we set up what we want to have as inputs on our website so we can link the create method to it and input data
+# - Showns an html form to create a new book - this SHOWS US THE VIEW! So in our html code we set up what we want to have as inputs on our website so we can link the create method to it and input data
 
 @books_blueprint.route("/books/new", methods=['GET'])
 def new_book():
@@ -53,6 +53,21 @@ def create_book():
 
 # SHOW
 # GET '/books/<id>'
+@books_blueprint.route("/books/<id>", methods=['GET'])
+def show_book(id):
+    book = book_repository.select(id)
+    return render_template('books/show.html', book = book)
+
+
+
+# @books_blueprint.route("/books/<id>", methods=["GET"])
+# # - Ensure we give delete book id as an argument otherwise will get a TypeError
+# def show_book(id):
+#     # - Python SQL query to view by id
+#     book = book_repository.select(id)
+#     # - refresh the page on books after we have deleted the item
+#     return render_template("/books/show.html", book = book)
+
 
 
 # EDIT
