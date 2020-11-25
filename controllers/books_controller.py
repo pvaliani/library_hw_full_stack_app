@@ -37,6 +37,7 @@ def new_book():
 # CREATE
 # POST '/books'
 
+# - This method allows us to create a new book  on the /books route and redirect to it i.e look at the updated view of books once we have input the new book 
 
 @books_blueprint.route("/books", methods=['POST'])
 def create_book():
