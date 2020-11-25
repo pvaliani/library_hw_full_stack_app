@@ -2,13 +2,18 @@
 {% extends "base.html" %}
 {% block content %}
 
-
+<!-- Within the loop we are printing all of the book objects in each paragraph and we are creating a form with the method post and a delete "submit" button to remove the book entry  -->
 {% for book in all_books %}
 <p>{{book.title}}</p>
 <p>{{book.genre}}</p>
 <p>{{book.publisher}}</p>
 <p>{{book.author.first_name}}</p>
 <p>{{book.author.last_name}}</p>
+
+
+<form action="/books/{{book.id}}/delete" method="POST">
+    <button type="submit">Delete</button>
+
 {% endfor %}
 
 {% endblock %}
