@@ -25,6 +25,7 @@ def books():
 
 # NEW
 # GET '/books/new'
+# - Showns an html form to create a new task - this SHOWS US THE VIEW! So in our html code we set up what we want to have as inputs on our website so we can link the create method to it and input data
 
 @books_blueprint.route("/books/new", methods=['GET'])
 def new_book():
@@ -35,6 +36,18 @@ def new_book():
 
 # CREATE
 # POST '/books'
+
+
+@books_blueprint.route("/books", methods=['POST'])
+def create_book():
+    title = request.form['title']
+    genre = request.form['genre']
+    publisher = request.form['publisher']
+    author = author_repository.select(request.form['author_id'])
+    book = Book(title, genre, publisher, author)
+    book_repository.save(book)
+    return redirect('/books')
+
 
 
 # SHOW
@@ -54,7 +67,6 @@ def new_book():
 # DELETE '/books/<id>'
 
 # - Here we define the action (also a route) we want to take on a book by its ID
-
 
 @books_blueprint.route("/books/<id>/delete", methods=["POST"])
 # - Ensure we give delete book id as an argument otherwise will get a TypeError
