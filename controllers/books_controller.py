@@ -53,7 +53,7 @@ def create_book():
 
 # SHOW
 # GET '/books/<id>'
-@books_blueprint.route("/books/<id>", methods=['GET'])
+@books_blueprint.route("/books/<id>")
 def show_book(id):
     book = book_repository.select(id)
     return render_template('books/show.html', book = book)
